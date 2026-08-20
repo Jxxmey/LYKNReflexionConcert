@@ -7,9 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // บังคับให้ฟอนต์เริ่มต้นของเว็บ (sans) เปลี่ยนเป็น Prompt
         sans: ['Prompt', 'sans-serif'],
-        // สร้างคลาสใหม่ font-heading สำหรับใช้กับ Kanit เวลามีหัวข้อที่ต้องการความเท่
         heading: ['Kanit', 'sans-serif'],
       },
     },
