@@ -42,7 +42,7 @@ async def keep_alive():
             try:
                 # ให้ Ping เข้าไปที่ URL ของตัวเอง หรือ localhost ตอนเทส
                 port = os.getenv("PORT", "8000")
-                await client.get(f"http://localhost:{port}/ping")
+                await client.get(f"https://lyknreflexionconcert.onrender.com/ping")
                 print("Pinged server successfully")
             except Exception as e:
                 print(f"Ping failed: {e}")
