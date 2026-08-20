@@ -1,0 +1,51 @@
+# =========================
+# Security / ความปลอดภัย (ห้ามเอาขึ้นเด็ดขาด)
+# =========================
+.env
+.env.*
+*.env
+*.pem
+*.key
+
+# =========================
+# Frontend (Node.js / React / Vite)
+# =========================
+node_modules/
+dist/
+dist-ssr/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.eslintcache
+
+# =========================
+# Backend (Python / FastAPI)
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+env/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+
+# =========================
+# OS & IDE (ไฟล์ขยะจากระบบปฏิบัติการและโปรแกรมเขียนโค้ด)
+# =========================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+ผังที่นั่ง.txt
+impact_arena.txt
