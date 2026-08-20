@@ -1,21 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700;800;900&family=Prompt:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* ล้างค่าฟอนต์ขยะของ Vite และบังคับใส่ฟอนต์ใหม่ */
 @layer base {
-  html, body {
+  :root, html, body, #root {
     @apply bg-slate-950 text-white;
     font-family: 'Prompt', sans-serif !important;
   }
 
-  /* บังคับให้หัวข้อใหญ่ออกมาเป็น Kanit (โฉบเฉี่ยว เท่) */
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: 'Kanit', sans-serif !important;
   }
 }
 
-/* เพิ่มความสวยงามให้แถบ Scrollbar ดูทันสมัยเข้ากับเว็บ */
 ::-webkit-scrollbar {
   width: 8px;
 }
