@@ -11,7 +11,7 @@
 # Frontend (Node.js / React / Vite)
 # =========================
 node_modules/
-dist/
+frontend/dist/
 dist-ssr/
 .npm/
 npm-debug.log*
