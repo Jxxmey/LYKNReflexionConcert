@@ -77,49 +77,56 @@ const Tarot = () => {
           สุ่มไพ่ทาโรต์เช็คดวงการกดบัตรคอนเสิร์ต
         </p>
 
-        {/* Card 3D Container */}
+        {/* Card Container (แยก 2D กับ 3D ออกจากกัน) */}
         <div 
           className="relative w-64 h-96 md:w-72 md:h-[430px] mb-8 cursor-pointer" 
           style={{ perspective: '1000px' }}
           onClick={!selectedCard && !isDrawing ? drawRandomCard : null}
         >
-          {/* เลเยอร์ที่ 1: สำหรับทำแอนิเมชันสับไพ่ 2D (แยกออกมาไม่ให้ตีกับ 3D) */}
+          {/* เลเยอร์ 1: ขยับสับไพ่ (2D) */}
           <div className={`w-full h-full ${isDrawing ? 'animate-shuffle' : ''}`}>
             
-            {/* เลเยอร์ที่ 2: ตัวพลิกไพ่ 3D */}
+            {/* เลเยอร์ 2: พลิกไพ่ (3D) */}
             <div 
               className="w-full h-full relative"
               style={{ 
-                transition: 'transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1)',
+                transition: 'transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1)',
                 transformStyle: 'preserve-3d',
+                WebkitTransformStyle: 'preserve-3d',
                 transform: isFlipping ? 'rotateY(180deg)' : 'rotateY(0deg)'
               }}
             >
               
-              {/* ด้านหลังไพ่ (Backface) - โลโก้ Reflexion */}
+              {/* --- ด้านหลังไพ่ (Backface) - โลโก้ Reflexion --- */}
+              {/* ใช้กลไกบังคับซ่อน (opacity: 0) ทันทีที่ไพ่พลิกได้ครึ่งทาง (0.2s) */}
               <div 
-                className={`absolute inset-0 flex items-center justify-center bg-slate-900 rounded-2xl border-2 transition-all duration-300 ${isDrawing ? 'border-purple-400 shadow-[0_0_50px_rgba(168,85,247,0.8)]' : 'border-indigo-500/40 shadow-[0_0_30px_rgba(99,102,241,0.3)]'}`}
+                className={`absolute inset-0 flex items-center justify-center bg-slate-900 rounded-2xl border-2 overflow-hidden ${isDrawing ? 'border-purple-400 shadow-[0_0_50px_rgba(168,85,247,0.8)]' : 'border-indigo-500/40 shadow-[0_0_30px_rgba(99,102,241,0.3)]'}`}
                 style={{ 
                   backfaceVisibility: 'hidden', 
-                  WebkitBackfaceVisibility: 'hidden', // บังคับซ่อนใน Safari/iOS
-                  transform: 'rotateY(0deg)' // ล็อกองศาไว้
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(0deg)',
+                  opacity: isFlipping ? 0 : 1,
+                  transition: 'opacity 0s linear 0.2s, box-shadow 0.3s ease, border-color 0.3s ease'
                 }}
               >
                 <div className={`absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${isDrawing ? 'from-purple-600/40' : 'from-indigo-600/20'} to-transparent transition-colors duration-300`}></div>
                 <img 
                   src={reflexionLogo} 
                   alt="Card Back" 
-                  className="w-3/4 h-auto object-contain drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] relative"
+                  className="w-3/4 h-auto object-contain drop-shadow-[0_0_20px_rgba(168,85,247,0.5)] relative z-10"
                 />
               </div>
 
-              {/* ด้านหน้าไพ่ (Frontface) - รูปไพ่ทาโรต์ */}
+              {/* --- ด้านหน้าไพ่ (Frontface) - รูปไพ่ทาโรต์ --- */}
+              {/* ใช้กลไกบังคับแสดง (opacity: 1) ทันทีที่ไพ่พลิกได้ครึ่งทาง (0.2s) */}
               <div 
                 className="absolute inset-0 rounded-2xl border-2 border-purple-500/50 shadow-[0_0_40px_rgba(168,85,247,0.5)] bg-black overflow-hidden flex flex-col"
                 style={{ 
                   backfaceVisibility: 'hidden', 
-                  WebkitBackfaceVisibility: 'hidden', // บังคับซ่อนใน Safari/iOS
-                  transform: 'rotateY(180deg)' // กลับด้านรอไว้
+                  WebkitBackfaceVisibility: 'hidden',
+                  transform: 'rotateY(180deg)',
+                  opacity: isFlipping ? 1 : 0,
+                  transition: 'opacity 0s linear 0.2s'
                 }}
               >
                 {selectedCard && (

@@ -37,10 +37,10 @@ db = client.lykn_db
 
 async def keep_alive():
     while True:
-        await asyncio.sleep(300)  # เปลี่ยนเป็น 300 วินาที (5 นาที) ตามที่ต้องการ
+        await asyncio.sleep(300) # <--- แก้เป็น 300 วินาที (5 นาที) แล้วครับ
         async with httpx.AsyncClient() as client:
             try:
-                # ให้ Ping เข้าไปที่ URL ของตัวเอง
+                # ให้ Ping เข้าไปที่ URL ของตัวเอง หรือ localhost ตอนเทส
                 port = os.getenv("PORT", "8000")
                 await client.get(f"http://localhost:{port}/ping")
                 print("Pinged server successfully")
